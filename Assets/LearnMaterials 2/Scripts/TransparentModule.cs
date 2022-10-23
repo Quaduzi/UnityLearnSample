@@ -8,6 +8,7 @@ public class TransparentModule : MonoBehaviour
 {
     [Header("Модуль")]
     [SerializeField]
+    [Min(0)]
     private float changeSpeed;
 
     private float defaultAlpha;
