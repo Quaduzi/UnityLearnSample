@@ -6,11 +6,11 @@ public class ScalerModule : MonoBehaviour
 {
     [Header("Модуль")]
     [SerializeField]
-
+    [Min(0)]
     private Vector3 targetScale = new Vector3(2,2,2);
 
     [SerializeField]
-
+    [Min(0)]
     private float changeSpeed;
 
     private Vector3 defaultScale;
