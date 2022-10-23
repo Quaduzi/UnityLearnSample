@@ -4,8 +4,13 @@ using UnityEngine;
 [HelpURL("https://docs.google.com/document/d/1rdTEVSrCcYOjqTJcFCHj46RvnbdJhmQUb3gHMDhVftI/edit?usp=sharing")]
 public class ScalerModule : MonoBehaviour
 {
+    [Header("Модуль")]
+    [SerializeField]
+    [Min(0)]
     private Vector3 targetScale = new Vector3(2,2,2);
 
+    [SerializeField]
+    [Min(0)]
     private float changeSpeed;
 
     private Vector3 defaultScale;
@@ -19,6 +24,7 @@ public class ScalerModule : MonoBehaviour
         toDefault = false;
     }
 
+    [ContextMenu("Изменить размер объекта")]
     public void ActivateModule()
     {
         Vector3 target = toDefault ? defaultScale : targetScale;
@@ -27,6 +33,7 @@ public class ScalerModule : MonoBehaviour
         toDefault = !toDefault;
     }
 
+    [ContextMenu("Вернуть исходный размер объекта")]
     public void ReturnToDefaultState()
     {
         toDefault = true;
