@@ -22,6 +22,12 @@
 # Visual Studio cache directory
 .vs/
 
+# Jetbrain Rider Cache
+.idea/
+
+# Visual Studio Code
+.vscode/
+
 # Gradle cache directory
 .gradle/
 
@@ -42,6 +48,9 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+
+# Unity local user project setting
+UserSettings/
 
 # Unity3D generated meta files
 *.pidb.meta
