@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Move : OurName
 {
-    private WaitForFixedUpdate _waitForFixedUpdate = new WaitForFixedUpdate();
     [Header("Модуль")]
 
     [SerializeField]
@@ -20,7 +19,7 @@ public class Move : OurName
         while (transform.position != endPosition)
         {
             transform.position = Vector3.MoveTowards(transform.position, endPosition, speed/50);
-            yield return _waitForFixedUpdate;
+            yield return new WaitForFixedUpdate();
         }
     }
 }
