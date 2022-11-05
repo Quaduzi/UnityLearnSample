@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Move : OurName
 {
+    private WaitForFixedUpdate _waitForFixedUpdate = new WaitForFixedUpdate();
     [Header("Модуль")]
 
     [SerializeField]
@@ -12,14 +13,14 @@ public class Move : OurName
     private float speed;
     public override void Use()
     {
-        StartCoroutine(Coroutine());
+        StartCoroutine(MoveCoroutine());
     }
-    private IEnumerator Coroutine()
+    private IEnumerator MoveCoroutine()
     {
         while (transform.position != endPosition)
         {
-            transform.position = Vector3.MoveTowards(transform.position, endPosition, speed);
-            yield return null;
+            transform.position = Vector3.MoveTowards(transform.position, endPosition, speed/50);
+            yield return _waitForFixedUpdate;
         }
     }
 }
