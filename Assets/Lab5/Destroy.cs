@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Destroy : OurName
 {
     private Transform target;
-    private float speed = 0.1f;
+    private float speed = 0.0001f;
     private bool key;
     private float t;
 
