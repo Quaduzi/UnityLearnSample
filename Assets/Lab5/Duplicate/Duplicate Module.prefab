@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 1
-  prefab: {fileID: 3317112318151593754, guid: 66d174b44ad56d94f9d45bc62626afba, type: 3}
+  prefab: {fileID: 8904321796357444856, guid: 945df87722b046944b2a9eb6f73747df, type: 3}
   repeatCount: 1
   step: 1
-  duplicateDirection: {x: 0, y: 0, z: 0, w: 1}
+  duplicateDirection: {x: 0, y: 0, z: 0}
   duplicateOffset: {x: 0, y: 0, z: 0}
-  duplicatedObjectRotation: {x: 0, y: 0, z: 0, w: 1}
+  duplicatedObjectRotation: {x: 0, y: 0, z: 0}
   duplicatedObjects: []
