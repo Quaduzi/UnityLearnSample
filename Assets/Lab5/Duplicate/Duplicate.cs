@@ -17,27 +17,34 @@ public class Duplicate : OurName
     private float step = 1;
 
     [SerializeField] 
-    private Quaternion duplicateDirection;
+    private Vector3 duplicateDirection;
 
     [SerializeField] 
     private Vector3 duplicateOffset;
     
     [SerializeField] 
-    private Quaternion duplicatedObjectRotation;
+    private Vector3 duplicatedObjectRotation;
 
     [SerializeField]
     [ReadOnly]
     private List<GameObject> duplicatedObjects;
+
+    private Transform myTransform;
+
+    private void Start()
+    {
+        myTransform = transform;
+    }
 
     [ContextMenu("Сгенерировать объекты")]
     public override void Use()
     {
         for (int i = 0; i < repeatCount; i++)
         {
-            var startPosition = transform.position + duplicateOffset;
-            var position = startPosition + transform.rotation * duplicateDirection * Vector3.forward * step * i;
-            var generated = Instantiate(prefab, position, transform.rotation * duplicatedObjectRotation);
-            generated.transform.SetParent(transform);
+            var startPosition = myTransform.position + duplicateOffset;
+            var position = startPosition + myTransform.rotation * Quaternion.Euler(duplicateDirection) * Vector3.forward * step * i;
+            var generated = Instantiate(prefab, position, myTransform.rotation * Quaternion.Euler(duplicatedObjectRotation));
+            generated.transform.SetParent(myTransform);
             duplicatedObjects.Add(generated);
         }
     }
@@ -67,8 +74,8 @@ public class Duplicate : OurName
     private void DrawDebugLines()
     {
         var start = transform.position + duplicateOffset;
-        var end = start + transform.rotation * duplicateDirection * Vector3.forward * step;
-        var objectRotation = start + transform.rotation * duplicatedObjectRotation * Vector3.forward * 0.3f;
+        var end = start + transform.rotation * Quaternion.Euler(duplicateDirection) * Vector3.forward * step;
+        var objectRotation = start + transform.rotation * Quaternion.Euler(duplicatedObjectRotation) * Vector3.forward * 0.3f;
         Gizmos.DrawSphere(start, 0.1f);
         Gizmos.DrawLine(start, objectRotation);
         Gizmos.color = Color.green;
