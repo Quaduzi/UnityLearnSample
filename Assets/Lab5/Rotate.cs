@@ -1,26 +1,37 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Rotate : OurName
 {
     [Header("Модуль")]
     [SerializeField]
-    float rotationMaxAngle;
-    [ContextMenu("Use")]
+    private Vector3 rotateAngle;
 
-    public override void Use()
+    [SerializeField]
+    private float speed;
+
+    private Transform myTransform;
+
+    private void Start()
     {
-        StartCoroutine(RotateCoroutine());
+        myTransform = transform;
     }
 
-    private IEnumerator RotateCoroutine()
+    [ContextMenu("Use")]
+    public override void Use()
     {
-        while(transform.localEulerAngles.y < rotationMaxAngle)
+        StartCoroutine(RotateCoroutine(rotateAngle));
+    }
+
+    private IEnumerator RotateCoroutine(Vector3 target)
+    {
+        Quaternion startRotation = myTransform.rotation;
+        Quaternion endRotation = startRotation * Quaternion.Euler(target);
+        while (myTransform.rotation != endRotation)
         {
-            float translation = Time.deltaTime * 10;
-            transform.Rotate(Vector3.up, translation, Space.World);
+            myTransform.rotation = Quaternion.RotateTowards(myTransform.rotation, endRotation, speed * Time.deltaTime);
             yield return new WaitForFixedUpdate();
         }
+        myTransform.rotation = endRotation;
     }
 }
