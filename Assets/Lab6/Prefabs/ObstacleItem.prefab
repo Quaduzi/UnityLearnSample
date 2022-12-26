@@ -116,5 +116,4 @@ MonoBehaviour:
       m_Calls: []
   minHealthColor: {r: 1, g: 0, b: 0, a: 0}
   maxHealthColor: {r: 1, g: 1, b: 1, a: 0}
-  destroySpeed: 1
   recoverCooldown: 3

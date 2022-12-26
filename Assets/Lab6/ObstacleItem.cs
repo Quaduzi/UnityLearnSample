@@ -14,16 +14,17 @@ public class ObstacleItem : DamageableObject
     private float recoverCooldown = 3;
 
     private Renderer _renderer;
+    private float _baseValue;
 
     private void Start()
     {
         _renderer = GetComponent<Renderer>();
+        _baseValue = currentValue;
         CalcColor();
         StartCoroutine(Recover());
     }
     private IEnumerator Recover()
     {
-        var baseValue = currentValue;
         var oldValue = currentValue;
         while (currentValue > 0)
         {
@@ -32,10 +33,10 @@ public class ObstacleItem : DamageableObject
                 yield return new WaitForSeconds(recoverCooldown);
             }
 
-            if (currentValue < baseValue)
+            if (currentValue < _baseValue)
             {
                 currentValue += Time.deltaTime;
-                if (currentValue > baseValue) currentValue = baseValue;
+                if (currentValue > _baseValue) currentValue = _baseValue;
             }
 
             oldValue = currentValue;
@@ -56,6 +57,6 @@ public class ObstacleItem : DamageableObject
 
     private void CalcColor()
     {
-        _renderer.material.color = Color.Lerp(minHealthColor, maxHealthColor, currentValue);
+        _renderer.material.color = Color.Lerp(minHealthColor, maxHealthColor, currentValue / _baseValue);
     }
 }
