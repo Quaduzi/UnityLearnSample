@@ -11,8 +11,6 @@ public class ObstacleItem : DamageableObject
     [SerializeField] 
     private Color maxHealthColor;
     [SerializeField] 
-    private float destroySpeed = 1;
-    [SerializeField] 
     private float recoverCooldown = 3;
 
     private Renderer _renderer;
@@ -47,7 +45,7 @@ public class ObstacleItem : DamageableObject
     }
     public override void GetDamage(float value)
     {
-        base.GetDamage(Time.deltaTime * destroySpeed);
+        base.GetDamage(value);
         CalcColor();
         if (currentValue <= 0)
         {

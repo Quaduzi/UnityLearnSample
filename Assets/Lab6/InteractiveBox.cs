@@ -4,13 +4,16 @@ using UnityEngine;
 public class InteractiveBox : ChainableObject
 {
     private LineRenderer _laser;
+    
+    [SerializeField]
+    private float damageMultiplier = 1;
 
     private void Start()
     {
         _laser = GetComponent<LineRenderer>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         ShootLaser();
     }
@@ -28,7 +31,7 @@ public class InteractiveBox : ChainableObject
                 _laser.SetPosition(1, hit.point);
                 if (hit.transform.TryGetComponent<DamageableObject>(out var damageable))
                 {
-                    damageable.GetDamage(Time.deltaTime);
+                    damageable.GetDamage(Time.deltaTime * damageMultiplier);
                 }
             }
         }
