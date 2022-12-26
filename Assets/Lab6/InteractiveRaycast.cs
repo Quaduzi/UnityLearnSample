@@ -24,7 +24,7 @@ public class InteractiveRaycast : MonoBehaviour
     {
         if (!Input.GetMouseButtonUp(1)) return;
         
-        if (GetMouseHit(out var hit)) return;
+        if (!GetMouseHit(out var hit)) return;
 
         if (hit.transform.TryGetComponent<ChainableObject>(out var del))
         {
@@ -35,14 +35,14 @@ public class InteractiveRaycast : MonoBehaviour
     private bool GetMouseHit(out RaycastHit hit)
     {
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
-        return !Physics.Raycast(ray.origin, ray.direction, out hit);
+        return Physics.Raycast(ray.origin, ray.direction, out hit);
     }
 
     private void CheckLeftMouseButtonUp()
     {
         if (!Input.GetMouseButtonUp(0)) return;
         
-        if (GetMouseHit(out var hit)) return;
+        if (!GetMouseHit(out var hit)) return;
             
         if (hit.collider.CompareTag("InteractivePlane"))
         {
